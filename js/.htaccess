@@ -1,0 +1,316 @@
+# 1.To use URL Alias you need to be running apache with mod_rewrite enabled.
+
+# 2. In your opencart directory rename htaccess.txt to .htaccess.
+
+# For any support issues please visit: http://www.opencart.com
+
+Options +SymLinksIfOwnerMatch
+
+# Prevent Directoy listing
+Options -Indexes
+
+# Prevent Direct Access to files
+<FilesMatch "(?i)((\.tpl|\.ini|\.log|(?<!robots)\.txt))">
+ Require all denied
+## For apache 2.2 and older, replace "Require all denied" with these two lines :
+# Order deny,allow
+# Deny from all
+</FilesMatch>
+
+
+##
+# Кеширование картинок, js и css
+FileETag MTime Size
+<ifmodule mod_expires.c>
+ <filesmatch ".(jpg|gif|png|js|css|gz)$">
+ ExpiresActive on
+ ExpiresDefault "access plus 1 year"
+ </filesmatch>
+</ifmodule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|gif|png)$">
+    Header append Cache-Control "public"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|gz|jgz)$">
+    Header append Vary Accept-Encoding
+    Header append Cache-Control "private"
+  </FilesMatch>
+</IfModule>
+
+##
+
+
+# SEO URL Settings
+RewriteEngine On
+# If your opencart installation does not run on the main web folder make sure you folder it does run in ie. / becomes /shop/
+
+RewriteBase /
+RewriteRule ^sitemap_filters.xml$ sitemap_filters.php [L]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
+#Redirect many slashes
+RewriteCond %{THE_REQUEST} //
+RewriteRule .* /$0 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/chernaya-pyatnica-skidki-do-50$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/dvostoronnya-plastina-yours-loves-dee-the-ornaments-yld14$
+RewriteRule ^.*$ https://abinails.com.ua/dvostoronnya-plastina-yours-loves-dee-the-ornament-yld14/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/novogodnie-podarki-i-bonusy$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/hallowen-skidki-do-70-procentov$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/tovari-nedeli-akcii-skidki$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/podarok-na-vibor-pri-pokupke-ot-500-grn$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/vesennjaja-rasprodazha$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-11-type-1$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-11-type-2$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-20-type-2$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-22-2-type-2$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-22-2m-type-2$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-21-2m-type-2$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-21-2z-type-2$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-23-2z-type-2$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nozhniczy-dlya-kutikuly-exclusive-33-1m-type-1$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/kusachki-dlya-kozhi-expert-61-12-mm$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/kusachki-dlya-nogtej/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/smennye-fajly-dlya-pilki-pryamoj-dfce-22-150$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/pilki-bafy-cnd/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/smennye-fajly-dlya-pilki-pryamoj-dfce-22-180$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/pilki-bafy-cnd/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nasadka-dlja-frezera-keramicheskaja--konus$
+RewriteRule ^.*$ https://abinails.com.ua/instrumenty-dlya-manikyura/nasadki-dlja-frezerov/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/bezopasnij-manikjur$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/uk/bezopasnij-manikjur$
+RewriteRule ^.*$ https://abinails.com.ua/uk/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/mezhdunarodnij-vebinar-nailathon$
+RewriteRule ^.*$ https://abinails.com.ua/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/uk/mezhdunarodnij-vebinar-nailathon$
+RewriteRule ^.*$ https://abinails.com.ua/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/akczii-ko-dnyu-svyatogo-valentina$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/akcziya-ko-dnyu-svyatogo-valentina$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/akciya-ko-dnyu-svyatogo-valentina$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/v-podarok-baza-i-top-pri-pokupke-4-laka-creative-play$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/akcija-na-8-marta$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/20-na-bonusnyj-schyot-ot-lyuboj-pokupki$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/grafik-raboty-internet-magazina$
+RewriteRule ^.*$ https://abinails.com.ua/articles/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/additives/$
+RewriteRule ^.*$ https://abinails.com.ua/brand/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/skidka-70-proc-na-vse-laki-pigmenti-i-dizajni-cnd-additives$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/skidka-70-proc-na-laki-cnd-vinylux$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/akciya-na-brendovuyu-korobku-vinilyuks$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/skidka-70-proc-na-gel-laki-cnd-shellac$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/skidka-70-na-vse-laki-dlja-nogtej-cnd-creative-play$
+RewriteRule ^.*$ https://abinails.com.ua/akcii/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2039$
+RewriteRule ^.*$ https://abinails.com.ua/korundovaya-nasadka-8356/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2045$
+RewriteRule ^.*$ https://abinails.com.ua/keramicheskaya-kruglaya-nasadka-8394/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2038$
+RewriteRule ^.*$ https://abinails.com.ua/keramicheskaya-nasadka-konus-8349/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2040$
+RewriteRule ^.*$ https://abinails.com.ua/keramicheskaya-nasadka-konus-sinyaya-8363/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2048$
+RewriteRule ^.*$ https://abinails.com.ua/keramicheskaya-nasadka-konus-m-sinyaya-8424/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2049$
+RewriteRule ^.*$ https://abinails.com.ua/keramicheskaya-nasadka-konus-s-krasnaya/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2042$
+RewriteRule ^.*$ https://abinails.com.ua/korundovaya-nasadka-korichnevaya/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2043$
+RewriteRule ^.*$ https://abinails.com.ua/korundovaya-nasadka-dlya-frezera-seraya/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2044$
+RewriteRule ^.*$ https://abinails.com.ua/korundovaya-nasadka-dlya-frezera-chernaya/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2050$
+RewriteRule ^.*$ https://abinails.com.ua/nabor-nasadok-dlya-frezera-vojlok/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2051$
+RewriteRule ^.*$ https://abinails.com.ua/nabor-nasadok-dlya-frezera-6-shtuk/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2052$
+RewriteRule ^.*$ https://abinails.com.ua/nasadka-dlya-frezera-keramicheskaya-konus-f-krasnaya/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&product_id=2047$
+RewriteRule ^.*$ https://abinails.com.ua/tverdosplavnaya-nasadka-kukuruza-krasnaya/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/uk/nabori-dlja-domashnego-uhoda--idei-dlja-podarkov$
+RewriteRule ^.*$ https://abinails.com.ua/uk/domashnij-manikyur-pedikyur/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/nabori-dlja-domashnego-uhoda--idei-dlja-podarkov$
+RewriteRule ^.*$ https://abinails.com.ua/domashnij-manikyur-pedikyur/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2154$
+RewriteRule ^.*$ https://abinails.com.ua/gel-lak-shellac-glitter-sneakers/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2155$
+RewriteRule ^.*$ https://abinails.com.ua/shellac-signature-lipstick/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2156$
+RewriteRule ^.*$ https://abinails.com.ua/shellac-silk-slip-dress/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2157$
+RewriteRule ^.*$ https://abinails.com.ua/shellac-white-button-down/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2158$
+RewriteRule ^.*$ https://abinails.com.ua/shellac-statement-earrings/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2159$
+RewriteRule ^.*$ https://abinails.com.ua/shellac-high-waisted-jeans/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2160$
+RewriteRule ^.*$ https://abinails.com.ua/vinylux-glitter-sneakers/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2161$
+RewriteRule ^.*$ https://abinails.com.ua/vinylux-signature-lipstick/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2162$
+RewriteRule ^.*$ https://abinails.com.ua/vinylux-silk-slip-dress/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2163$
+RewriteRule ^.*$ https://abinails.com.ua/vinylux-white-button-down/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2164$
+RewriteRule ^.*$ https://abinails.com.ua/vinylux-statement-earrings/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/index.php?route=product/product&path=60&product_id=2165$
+RewriteRule ^.*$ https://abinails.com.ua/vinylux-high-waisted-jeans/? [R=301,L]
+
+
+RewriteRule ^CN-Shellac-Gellac /cnd-shellac-gellac/ [R=301,L]
+RewriteRule ^shellac-vinylux-collections/nude-collection-shellac-vinylux /vinylux-nude-collection-set/ [R=301,L]
+RewriteRule ^cnd-shellac-gel-lak/vinylux-laki-dlya-nogtey /vinylux-collekciya-cnd/ [R=301,L]
+RewriteRule ^spa-system-cnd /uhod-za-kozhej-ruk/ [R=301,L]
+RewriteRule ^akcii-na-cnd-spa /akcii/ [R=301,L]
+RewriteRule ^skidka-50-na-ljuboj-lak-cnd-creative-play /laki/mfp/19-brend,creative-play/ [R=301,L]
+RewriteRule ^uk/skidka-50-na-ljuboj-lak-cnd-creative-play /uk/laki/mfp/19-brend,creative-play/ [R=301,L]
+RewriteRule ^10-na-bonusnyj-schyot-ot-lyuboj-pokupki /akcii/ [R=301,L]
+RewriteRule ^WisteriaHazeVinylux /wisteria-haze-vinylux/ [R=301,L]
+
+RewriteRule ^svetodiodniye-led-lampy/led-lamp-cnd-manicure /uf-i-led-lampy/ [R=301,L]
+RewriteRule ^spa-system-cnd /uhod-za-kozhej-ruk/ [R=301,L]
+RewriteRule ^shellac-vinylux-collections/rhythm-heat-summer-collection-cnd-shellac-vinylux /nabor-vinylux-rhythm-heat/ [R=301,L]
+RewriteRule ^shellac-vinylux-collections/glacial-illusion-collection-cnd /glacial-illusion-nabor-vinylux/ [R=301,L]
+RewriteRule ^shellac-vinylux-collections/alluring-trilogy-top-coat-trio /nabor-top-shellac-alluring-trilogy/ [R=301,L]
+RewriteRule ^cnd-shellac-gel-lak/additives /dizajn-nogtej/ [R=301,L]
+
+RewriteRule ^additives /dizajn-nogtej/ [R=301,L]
+RewriteRule ^cnd-shellac-brand /cnd-shellac-gellac/ [R=301,L]
+#RewriteRule ^spa /cnd-spa/ [R=301,L]
+RewriteRule ^brisa-lite-™ /geli-dlya-naraschivaniya-nogtej/ [R=301,L]
+RewriteRule ^brisa-lite /geli-dlya-naraschivaniya-nogtej/ [R=301,L]
+RewriteRule ^specialnye-ceny-na-cnd-shellac /akcii/ [R=301,L]
+RewriteRule ^specialnie-ceni-na-cnd-vinylux-ot-59grn /akcii/ [R=301,L]
+RewriteRule ^skidka-70-na-vse-laki-dlja-nogtej-cnd-creative-play /laki/mfp/67-aktsiya-na-laki,-70--skidka/19-brend,creative-play/ [R=301,L]
+RewriteRule ^skidka-70-proc-na-gel-laki-cnd-shellac /cnd-shellac-gellac/mfp/69-aktsiya,-70--skidka/ [R=301,L]
+RewriteRule ^skidka-70-proc-na-laki-cnd-vinylux /laki/mfp/67-aktsiya-na-laki,-70--skidka/19-brend,vinylux/ [R=301,L]
+RewriteRule ^skidka-70-proc-na-vse-laki-pigmenti-i-dizajni-cnd-additives /dizajn-nogtej/mfp/69-aktsiya,-70-/ [R=301,L]
+Redirect 301 /spa https://abinails.com.ua/cnd-spa
+
+RewriteRule ^sitemap.xml$ index.php?route=extension/feed/google_sitemap [L]
+RewriteRule ^googlebase.xml$ index.php?route=extension/feed/google_base [L]
+RewriteRule ^sitemap_pro.xml$ index.php?route=extension/feed/sitemap_pro [L]
+RewriteRule ^yandex_feed.xml$ index.php?route=extension/feed/yandex_feed [L]
+RewriteRule ^system/download/(.*) index.php?route=error/not_found [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
+
+### Additional Settings that may need to be enabled for some servers
+### Uncomment the commands by removing the # sign in front of it.
+### If you get an "Internal Server Error 500" after enabling any of the following settings, restore the # as this means your host doesn't allow that.
+
+# 1. If your cart only allows you to add one item at a time, it is possible register_globals is on. This may work to disable it:
+# php_flag register_globals off
+
+# 2. If your cart has magic quotes enabled, This may work to disable it:
+# php_flag magic_quotes_gpc Off
+
+# 3. Set max upload file size. Most hosts will limit this and not allow it to be overridden but you can try
+# php_value upload_max_filesize 999M
+
+# 4. set max post size. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value post_max_size 999M
+
+# 5. set max time script can take. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_execution_time 200
+
+# 6. set max time for input to be recieved. Uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_input_time 200
+
+# 7. disable open_basedir limitations
+# php_admin_value open_basedir none
