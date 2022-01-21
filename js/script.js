@@ -65,7 +65,7 @@ const obj = {
 console.log(obj.name);
 
 alert("hallo");
-
+// --------------------------
 const result = [];
 
 result[0] = prompt("Сколько вам лет?", "");
@@ -80,7 +80,6 @@ sidelmant[1] = prompt("Второй текст", "");
 sidelmant[2] = prompt("Третий текст", "");
 
 document.write(sidelmant);
-
 
 // следущее
 let result = 20,
